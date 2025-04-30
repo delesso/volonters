@@ -1,0 +1,56 @@
+.news{
+    
+    &__inner{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 30px;
+    }
+
+    &__card{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        
+        gap: 50px;
+        @include tablet{
+            flex-wrap: wrap;
+        }
+        @include mobile{
+            flex-wrap: wrap;
+            
+        }
+        &-item{
+            max-width: 500px;
+            @include desktop{
+                max-width: 400px;
+            }
+            @include tablet{
+                max-width: 330px;
+            }
+            @include mobile{
+                max-width: 250px;
+            }
+            @include mobile-n{
+                max-width: 350px;
+            }
+
+        }
+
+        &-title{
+            @include fluid-text(24, 14);
+            font-weight: 700;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+        &-subtitle{
+            @include fluid-text(18, 12);
+        }
+    }
+    &__button{
+        @include mobile-n{
+            width: 100%;
+        }
+        
+    }
+}

@@ -1,0 +1,743 @@
+@charset "UTF-8";
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями и видео
+ */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+  /**
+    Убираем скачок интерфейса по горизонтали
+    при появлении / исчезновении скроллбара
+   */
+  scrollbar-gutter: stable;
+}
+
+/**
+  Плавный скролл
+ */
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Нормализация высоты элемента ссылки при его инспектировании в DevTools
+ */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведении на элемент
+ */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут fill со значением 'none' или начинается с 'url')
+ */
+:where([fill]:not([fill=none],
+[fill^=url])) {
+  fill: currentColor;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут stroke со значением 'none')
+ */
+:where([stroke]:not([stroke=none],
+[stroke^=url])) {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Приведение рамок таблиц в классический 'collapse' вид
+ */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/SpaceGrotesk-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/SpaceGrotesk-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --color-dark: #191A23;
+  --color-light: #FFFFFF;
+  --color--accent: #b9ff66;
+  --color-grey: #f3f3f3;
+  --color--grey-alt: #898989;
+  --color--dark-alt: #292A32;
+  --border: 1px solid var(--color-dark);
+  --border-radius: 14px;
+  --border-radius-small: 7px;
+  --border-radius-large: 45px;
+  --shadow: 0 5px 0 0 var(--color-dark);
+  --font-family-base: "Space Grotesk", sans-serif;
+  --container-width: 1240px;
+  --container-padding-x: 20px;
+  --section-padding-y: 70px ;
+  --input-height: 59px;
+  --button-height: 68px;
+  --transition-duration: 0.2s;
+}
+@media (max-width: 1280px) {
+  :root {
+    --section-padding-y: 50px ;
+  }
+}
+@media (max-width: 767px) {
+  :root {
+    --section-padding-y: 30px ;
+  }
+}
+
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  -webkit-clip-path: inset(100%) !important;
+          clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .visible-mobile {
+    display: none !important;
+  }
+}
+
+body {
+  font-size: clamp(16px, 1.25vw, 18px);
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  line-height: 1.28;
+  color: var(--color-dark);
+  background-color: var(--color-light);
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 500;
+}
+
+h1 {
+  font-size: clamp(43px, 4.1666666667vw, 60px);
+}
+
+h2 {
+  font-size: clamp(36px, 2.7777777778vw, 40px);
+}
+
+h3 {
+  font-size: clamp(26px, 2.0833333333vw, 30px);
+}
+
+h4 {
+  font-size: clamp(18px, 1.3888888889vw, 20px);
+}
+
+.header {
+  padding-top: 15px;
+  padding-inline: 30px;
+}
+.header__inner {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__nav-list {
+  display: flex;
+  -moz-column-gap: 50px;
+       column-gap: 50px;
+}
+.header__nav-item {
+  transition-duration: var(--transition-duration);
+  position: relative;
+  display: inline-flex;
+}
+@media (hover: hover) {
+  .header__nav-item:hover {
+    transform: scale(1.2);
+  }
+}
+@media (hover: none) {
+  .header__nav-item:active {
+    transform: scale(1.2);
+  }
+}
+
+/* Стили модального окна */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.modal-close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.modal button[type=submit] {
+  width: 100%;
+  padding: 12px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Анимация иконки при наведении */
+a:hover img {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+.auth-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  position: relative;
+}
+
+.tab-btn.active {
+  color: #4285f4;
+}
+
+.tab-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #4285f4;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Дополнительные стили форм */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.forgot-password {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin-top: -10px;
+}
+
+.auth-form button[type=submit] {
+  margin-top: 10px;
+}
+
+.right-sidebar {
+  border-radius: 20px;
+  transform: translateX(-50%, 50%);
+  margin-top: 20vh !important;
+  margin: 0 auto;
+  padding: 50px;
+  box-shadow: -1px 1px 8px 0px rgba(34, 60, 80, 0.2);
+  border: none;
+  position: relative;
+  animation: modalFadeIn 0.8s;
+}
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 767px) {
+  .right-sidebar {
+    padding: 20px;
+  }
+}
+.right-sidebar span {
+  position: absolute;
+  top: 0;
+  padding: 20px;
+  right: 0;
+  cursor: pointer;
+  transition-duration: var(--transition-duration);
+}
+@media (hover: hover) {
+  .right-sidebar span:hover {
+    transform: scale(1.05);
+  }
+}
+@media (hover: none) {
+  .right-sidebar span:active {
+    transform: scale(1.05);
+  }
+}
+.right-sidebar h2 {
+  font-size: clamp(18px, 1.8055555556vw, 26px);
+}
+.right-sidebar form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 15px;
+}
+.right-sidebar form .form-button {
+  margin-top: 15px;
+  display: flex;
+  align-self: start;
+  font-size: clamp(12px, 1.3888888889vw, 20px);
+}
+.right-sidebar form .form-input {
+  display: flex;
+  justify-content: space-between;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  align-items: center;
+}
+.right-sidebar form .form-input input {
+  max-height: 30px;
+}
+
+.banner {
+  margin-top: 150px;
+}
+.banner__inner {
+  display: flex;
+  justify-content: space-between;
+  -moz-column-gap: 100px;
+       column-gap: 100px;
+  align-items: center;
+}
+@media (max-width: 1023px) {
+  .banner__inner {
+    flex-wrap: wrap;
+    row-gap: 80px;
+  }
+}
+.banner__img {
+  flex-grow: 3;
+}
+.banner__title {
+  max-width: 70%;
+}
+@media (max-width: 1023px) {
+  .banner__title {
+    max-width: 100%;
+  }
+}
+.banner__btn {
+  display: flex;
+  flex-wrap: wrap;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+}
+.banner__button {
+  margin-top: 50px;
+}
+@media (max-width: 1023px) {
+  .banner__button {
+    justify-content: center;
+  }
+}
+@media (max-width: 480px) {
+  .banner__button {
+    width: 100%;
+  }
+}
+
+.blue-bg {
+  background-color: rgb(53, 109, 230) !important;
+}
+@media (max-width: 480px) {
+  .blue-bg {
+    margin-top: 20px;
+  }
+}
+@media (hover: hover) {
+  .blue-bg:hover {
+    background-color: blueviolet !important;
+  }
+}
+@media (hover: none) {
+  .blue-bg:active {
+    background-color: blueviolet !important;
+  }
+}
+
+.button {
+  padding: 18px 30px;
+  border-radius: 69px;
+  color: white;
+  font-size: 26px;
+  border: none;
+  background-color: blueviolet;
+  font-size: clamp(16px, 2.2222222222vw, 32px);
+}
+@media (hover: hover) {
+  .button:hover {
+    background-color: rgb(53, 109, 230);
+  }
+}
+@media (hover: none) {
+  .button:active {
+    background-color: rgb(53, 109, 230);
+  }
+}
+
+.news__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 30px;
+}
+.news__card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+}
+@media (max-width: 1023px) {
+  .news__card {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 767px) {
+  .news__card {
+    flex-wrap: wrap;
+  }
+}
+.news__card-item {
+  max-width: 500px;
+}
+@media (max-width: 1280px) {
+  .news__card-item {
+    max-width: 400px;
+  }
+}
+@media (max-width: 1023px) {
+  .news__card-item {
+    max-width: 330px;
+  }
+}
+@media (max-width: 767px) {
+  .news__card-item {
+    max-width: 250px;
+  }
+}
+@media (max-width: 589px) {
+  .news__card-item {
+    max-width: 350px;
+  }
+}
+.news__card-title {
+  font-size: clamp(14px, 1.6666666667vw, 24px);
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.news__card-subtitle {
+  font-size: clamp(12px, 1.25vw, 18px);
+}
+@media (max-width: 589px) {
+  .news__button {
+    width: 100%;
+  }
+}
+
+.footer {
+  margin-top: 30px;
+}
+.footer__inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+}
+@media (max-width: 767px) {
+  .footer__inner {
+    padding-inline: 20px;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 767px) {
+  .footer__button {
+    margin-top: 15px;
+  }
+}
+.footer__title {
+  text-align: center;
+}
+.footer__title h2 {
+  font-size: clamp(14px, 1.8055555556vw, 26px);
+}
+.footer__title p {
+  font-size: clamp(12px, 1.3888888889vw, 20px);
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  background: #ff6b6b;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 1000;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.hidden {
+  display: none;
+}/*# sourceMappingURL=styles.css.map */

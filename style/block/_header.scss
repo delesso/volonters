@@ -1,0 +1,27 @@
+.header {
+    padding-top: 15px;
+    padding-inline: 30px;
+
+    &__inner {
+        text-decoration: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__nav {
+        &-list {
+            display: flex;
+            column-gap: 50px;
+        }
+
+        &-item {
+            transition-duration: var(--transition-duration);
+            position: relative;
+            display: inline-flex;
+                @include hover {
+                    transform: scale(1.2);
+                }
+        }
+    }
+}

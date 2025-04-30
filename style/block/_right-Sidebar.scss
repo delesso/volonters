@@ -1,0 +1,63 @@
+.right-sidebar{
+  border-radius: 20px;
+  transform: translateX(-50%, 50%);
+  margin-top: 20vh !important;
+  margin: 0 auto;
+  padding: 50px;
+  box-shadow: -1px 1px 8px 0px rgba(34, 60, 80, 0.2);
+  border: none;
+  position: relative;
+  animation: modalFadeIn 0.8s;
+
+  @keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-50px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  @include mobile{
+    padding: 20px
+  }
+
+  span{
+    position: absolute;
+    top: 0;
+    padding: 20px;
+    right: 0;
+    cursor: pointer;
+    transition-duration: var(--transition-duration);
+
+    @include hover{
+      transform: scale(1.05)
+    }
+  }
+  h2{
+    @include fluid-text(26,18);
+  }
+
+  form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 15px;
+
+    .form-button{
+      margin-top: 15px;
+      display: flex;
+      align-self: start;
+      @include fluid-text(20,12);
+    }
+
+      .form-input{
+        display: flex;
+        justify-content: space-between;
+        column-gap: 10px;
+        align-items: center;
+
+        input{
+          max-height: 30px;
+        }
+      }
+  }
+
+
+}

@@ -1,0 +1,14 @@
+.button{
+    padding: 18px 30px;
+    border-radius: 69px;
+    color: white;
+    font-size: 26px;
+    border: none;
+    background-color: blueviolet;
+
+
+    @include fluid-text;
+    @include hover{
+        background-color: rgb(53, 109, 230) 
+    }
+}

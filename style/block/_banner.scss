@@ -1,0 +1,61 @@
+.banner{
+    margin-top: 150px;
+    &__inner{
+        display: flex;
+        justify-content: space-between;
+        column-gap: 100px;
+        align-items: center;
+        
+        @include tablet{
+            flex-wrap: wrap;
+            row-gap: 80px;
+        }
+        
+    }
+
+    &__img{
+        flex-grow: 3;
+    }
+
+    &__title{
+        max-width: 70%;
+
+        @include tablet{
+            max-width: 100%;
+            
+        }
+        p{
+            
+
+        }
+    }
+    &__btn{
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 30px;
+        
+    }
+
+    &__button{
+        margin-top: 50px;
+
+        @include tablet{
+            justify-content: center;
+        }
+        @include mobile-s{
+            width: 100%;
+        }
+    }
+}
+
+.blue-bg{
+    background-color: rgb(53, 109, 230) !important;
+
+
+    @include mobile-s{
+        margin-top: 20px;
+    }
+    @include hover{
+        background-color: blueviolet !important; 
+    }
+}

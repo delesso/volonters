@@ -1,0 +1,32 @@
+.footer{
+    margin-top: 30px;
+    &__inner{
+        display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    column-gap: 15px;
+
+    @include mobile {
+        padding-inline: 20px;
+        flex-wrap: wrap;
+    }
+    }
+
+    &__button{
+        @include mobile{
+            margin-top: 15px;
+        }
+    }
+    &__title{
+        text-align: center;
+        
+
+        h2{
+            @include fluid-text(26, 14);
+        }
+        p{
+            @include fluid-text(20,12);
+        }
+    }
+}
