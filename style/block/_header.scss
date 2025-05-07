@@ -5,23 +5,60 @@
     &__inner {
         text-decoration: none;
         display: flex;
+        column-gap: 20px;
         justify-content: space-between;
         align-items: center;
     }
+    
+    &__logo {
+        img {
+            @include mobile{
+                max-width: 200px;
+                height: auto
+            }
+            
+        }
+    }
 
     &__nav {
+
+        &-button{
+            @include fluid-text(12,24);
+            padding: 10px 20px !important;
+            color: white !important;
+                @include hover {
+                   transform: scale(1.05);
+                }
+
+        }
         &-list {
             display: flex;
             column-gap: 50px;
-        }
 
+            @include mobile {
+                flex-wrap: wrap;
+                row-gap: 10px;
+                justify-content: end;
+            }
+        }
         &-item {
             transition-duration: var(--transition-duration);
             position: relative;
             display: inline-flex;
+            align-items: center;
+            column-gap: 15px;
                 @include hover {
-                    transform: scale(1.2);
+                    transform: scale(1.02);
                 }
+
+                &:last-child {
+                   @include hover {
+                        transform: scale(1);
+                    }
+                    
+                }
+                
         }
     }
 }
+

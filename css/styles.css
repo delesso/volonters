@@ -325,27 +325,70 @@ h4 {
 .header__inner {
   text-decoration: none;
   display: flex;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
   justify-content: space-between;
   align-items: center;
+}
+@media (max-width: 767px) {
+  .header__logo img {
+    max-width: 200px;
+    height: auto;
+  }
+}
+.header__nav-button {
+  font-size: clamp(24px, 0.8333333333vw, 12px);
+  padding: 10px 20px !important;
+  color: white !important;
+}
+@media (hover: hover) {
+  .header__nav-button:hover {
+    transform: scale(1.05);
+  }
+}
+@media (hover: none) {
+  .header__nav-button:active {
+    transform: scale(1.05);
+  }
 }
 .header__nav-list {
   display: flex;
   -moz-column-gap: 50px;
        column-gap: 50px;
 }
+@media (max-width: 767px) {
+  .header__nav-list {
+    flex-wrap: wrap;
+    row-gap: 10px;
+    justify-content: end;
+  }
+}
 .header__nav-item {
   transition-duration: var(--transition-duration);
   position: relative;
   display: inline-flex;
+  align-items: center;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
 }
 @media (hover: hover) {
   .header__nav-item:hover {
-    transform: scale(1.2);
+    transform: scale(1.02);
   }
 }
 @media (hover: none) {
   .header__nav-item:active {
-    transform: scale(1.2);
+    transform: scale(1.02);
+  }
+}
+@media (hover: hover) {
+  .header__nav-item:last-child:hover {
+    transform: scale(1);
+  }
+}
+@media (hover: none) {
+  .header__nav-item:last-child:active {
+    transform: scale(1);
   }
 }
 
@@ -610,10 +653,9 @@ a:hover img {
   padding: 18px 30px;
   border-radius: 69px;
   color: white;
-  font-size: 26px;
   border: none;
   background-color: blueviolet;
-  font-size: clamp(16px, 2.2222222222vw, 32px);
+  font-size: clamp(20px, 0.8333333333vw, 12px);
 }
 @media (hover: hover) {
   .button:hover {
@@ -636,7 +678,9 @@ a:hover img {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 50px;
+  row-gap: 30px;
+  -moz-column-gap: 50px;
+       column-gap: 50px;
 }
 @media (max-width: 1023px) {
   .news__card {
@@ -670,6 +714,11 @@ a:hover img {
   .news__card-item {
     max-width: 350px;
   }
+}
+.news__card-item img {
+  max-width: 100%;
+  height: 200px;
+  border-radius: 10px;
 }
 .news__card-title {
   font-size: clamp(14px, 1.6666666667vw, 24px);
@@ -740,4 +789,113 @@ a:hover img {
 
 .hidden {
   display: none;
+}
+
+.requests__clean {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+}
+
+.requests__edit {
+  display: flex;
+  row-gap: 10px;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 10px !important;
+  width: 125px;
+}
+
+.body-no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+.admin {
+  position: absolute;
+  max-width: 1200px;
+  margin: 0 auto;
+  top: 0;
+}
+.admin h1 {
+  font-size: clamp(14px, 1.6666666667vw, 24px);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.admin h2 {
+  font-size: clamp(12px, 1.25vw, 18px);
+}
+.admin table {
+  align-items: center;
+  position: relative;
+  max-width: 100%;
+  border: 1px solid black;
+}
+.admin table thead {
+  max-width: 50%;
+}
+.admin table thead tr {
+  padding: 10px 0;
+  font-size: clamp(13px, 1.25vw, 18px);
+  max-width: 300px;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  border-bottom: 1px solid black;
+}
+.admin table thead th {
+  font-size: clamp(10px, 1.25vw, 18px);
+  max-width: 300px;
+  padding-inline: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.admin table tbody {
+  max-width: 50%;
+}
+.admin table tbody tr {
+  max-width: 300px;
+  flex-direction: row;
+  border-bottom: 1px solid black;
+}
+.admin table tbody td {
+  font-size: clamp(10px, 1.25vw, 18px);
+  word-wrap: break-word;
+  word-break: break-all;
+  max-width: 300px;
+  padding: 10px 0;
+  padding-right: 10px;
+  text-align: center;
+}
+.admin table tbody td:nth-child(5) {
+  border-right: 1px solid black;
+}
+
+.button_tablet {
+  font-size: clamp(12px, 1.25vw, 18px);
+  text-align: center;
+  padding: 5px 10px;
+}
+
+.create-news form label {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.create-news form #subtitle {
+  max-width: 350px;
+}
+.create-news form #content {
+  max-width: 350px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 15px 15px 0 0;
+  padding: 10px 15px;
+  font-size: clamp(12px, 1.25vw, 18px);
 }/*# sourceMappingURL=styles.css.map */

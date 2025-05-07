@@ -1,3 +1,12 @@
+document.getElementById('admin').addEventListener('close', function() {
+  document.body.classList.remove('body-no-scroll');
+});
+document.getElementById('admin').addEventListener('showModal', function() {
+  document.body.classList.add('body-no-scroll');
+});
+document.body.classList.add('body-no-scroll');
+
+document.body.classList.remove('body-no-scroll')
 document.addEventListener('DOMContentLoaded', function() {
     const iconLink = document.querySelector('.header__nav-item a');
     const modal = document.getElementById('authModal');
@@ -81,4 +90,4 @@ cleanupButton.addEventListener("click", showNotification);
       }
     });
   });
-  
+;

@@ -1,0 +1,120 @@
+.requests__clean{
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+.requests__edit{
+    display: flex;
+    row-gap: 10px;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 10px !important;
+    width: 125px;
+}
+.body-no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+.admin{
+    position: absolute;
+    max-width: 1200px;
+    margin: 0 auto;
+    top: 0;
+
+    h1{
+        @include fluid-text(24, 14);
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    h2{
+        @include fluid-text(18, 12);
+    }
+
+    table{
+       
+        align-items: center;
+        position: relative;
+        max-width: 100%;
+        border: 1px solid black;
+        thead{
+            max-width: 50%;
+            tr{
+                padding: 10px 0;
+                @include fluid-text(18, 13);
+                max-width: 300px;
+                flex-direction: row;
+                align-items: center;
+                font-weight: 700;
+                font-size: 18px;
+                border-bottom: 1px solid black;
+                
+            }
+            th{
+                @include fluid-text(18, 10);
+                max-width: 300px;
+                padding-inline: 10px;
+                margin-bottom: 10px;
+                
+                text-align: center;
+                
+            }
+        }
+        tbody{
+            max-width: 50%;
+            tr{
+                max-width: 300px;
+                flex-direction: row;
+                border-bottom: 1px solid black;
+        }
+        td{
+            @include fluid-text(18, 10);
+            word-wrap: break-word;
+            word-break: break-all;
+            max-width: 300px;
+            padding: 10px 0;
+            padding-right: 10px;
+            
+            text-align: center;
+        
+            &:nth-child(5){
+                border-right: 1px solid black;
+            }
+        }
+    }
+}
+}
+.button_tablet{
+    @include fluid-text(18, 12);
+    text-align: center;
+    padding: 5px 10px;
+}
+.create-news{
+    form{
+
+        label{
+            display: inline-block;
+            margin-bottom: 10px;
+            
+        }
+
+        #subtitle{
+            max-width: 350px;
+        }
+
+        #content{
+            max-width: 350px;
+        }
+       }
+        }
+.close-modal{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 15px 15px 0 0;
+    padding: 10px 15px;
+    @include fluid-text(18, 12)
+}
+
+    

@@ -11,8 +11,8 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        
-        gap: 50px;
+        row-gap: 30px;
+        column-gap: 50px;
         @include tablet{
             flex-wrap: wrap;
         }
@@ -34,7 +34,11 @@
             @include mobile-n{
                 max-width: 350px;
             }
-
+            img{
+                max-width: 100%;
+                height: 200px;
+                border-radius: 10px;
+            }
         }
 
         &-title{

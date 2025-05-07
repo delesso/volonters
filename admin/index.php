@@ -48,6 +48,7 @@ try {
             background-color: #f2f2f2;
         }
     </style>
+    <link rel="stylesheet" href="../css/styles.css" />
 </head>
 <body>
 
