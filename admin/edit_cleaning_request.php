@@ -25,21 +25,28 @@ try {
 
     // Обработка отправки формы
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Проверяем статус
         $status = $_POST["status"];
+        // Здесь можно добавить проверку допустимых значений статуса
+        if (!in_array($status, ['new', 'in_progress', 'completed'])) {
+            die("Недопустимый статус.");
+        }
 
         $sql = "UPDATE cleaning_requests SET status = :status WHERE id = :id";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':status', $status, PDO::PARAM_STR);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-
-        header("Location: index.php");
-        exit();
+        
+        if ($stmt->execute()) {
+            header("Location: ../index.php");
+            exit();
+        } else {
+            die("Ошибка обновления статуса.");
+        }
     }
 
-
 } catch (PDOException $e) {
-    echo "Ошибка базы данных: " . $e->getMessage();
+    echo "Ошибка базы данных: " . htmlspecialchars($e->getMessage());
     die();
 }
 ?>
