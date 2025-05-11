@@ -22,8 +22,9 @@
 
     &__nav {
 
+
         &-button{
-            @include fluid-text(12,24);
+            @include fluid-text(12,18);
             padding: 10px 20px !important;
             color: white !important;
                 @include hover {

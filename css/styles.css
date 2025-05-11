@@ -337,7 +337,7 @@ h4 {
   }
 }
 .header__nav-button {
-  font-size: clamp(24px, 0.8333333333vw, 12px);
+  font-size: clamp(18px, 0.8333333333vw, 12px);
   padding: 10px 20px !important;
   color: white !important;
 }
@@ -511,6 +511,19 @@ a:hover img {
 
 .auth-form button[type=submit] {
   margin-top: 10px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.form-h1 {
+  font-size: clamp(12px, 1.6666666667vw, 24px);
+  margin-right: 60px;
+  margin-bottom: 15px;
 }
 
 .right-sidebar {

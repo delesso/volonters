@@ -19,6 +19,7 @@
     max-width: 400px;
     position: relative;
     animation: modalFadeIn 0.3s;
+
   }
   
   @keyframes modalFadeIn {
@@ -112,3 +113,16 @@
   .auth-form button[type="submit"] {
     margin-top: 10px;
   }
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}  
+.form-h1{
+  @include fluid-text(24,12);
+
+  margin-right: 60px;
+  margin-bottom: 15px;
+  
+}

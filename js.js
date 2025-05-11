@@ -31,7 +31,37 @@ document.addEventListener('DOMContentLoaded', function () {
 			modal.style.display = 'none'
 		}
 	})
-})
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const editButtons = document.querySelectorAll('.edit-btn');
+    const editForm = document.getElementById('edit-form');
+    const requestIdInput = document.getElementById('edit-request-id');
+    const statusSelect = document.getElementById('status');
+    
+    editButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Получаем данные из атрибутов кнопки
+            const requestId = this.getAttribute('data-id');
+            const currentStatus = this.getAttribute('data-status');
+            
+            // Заполняем форму
+            requestIdInput.value = requestId;
+            statusSelect.value = currentStatus;
+            
+            // Показываем диалоговое окно
+            editForm.showModal();
+        });
+    });
+    
+    // Закрытие по клику вне диалога
+    editForm.addEventListener('click', function(e) {
+        if (e.target === editForm) {
+            editForm.close();
+        }
+    });
+});
 document.addEventListener('DOMContentLoaded', function () {
 	const menuButton = document.querySelector('open-rightMenu')
 	const sidebar = document.getElementById('rightSidebar')

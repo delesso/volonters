@@ -330,12 +330,36 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
                     }
                     ?>
                 </td>
-				<td class="requests__edit"><a class="button button_tablet" href="./admin/edit_cleaning_request.php?id=<?php echo $request['id']; ?>">Изменить</a>
+				<td class="requests__edit"><a class="button button_tablet" 
+            onclick="openEditForm(<?php echo $request['id']; ?>, '<?php echo $request['status']; ?>')">
+        Изменить
+				</a>
 				<a class="button button_tablet" href="./admin/delete_cleaning_request.php?id=<?php echo $request['id']; ?>" onclick="return confirm('Вы уверены, что хотите удалить эту заявку?')">Удалить</a></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
-	
+	<script>
+// Функция для открытия формы редактирования
+function openEditForm(id, status) {
+    const editForm = document.getElementById('edit-form');
+    const requestIdInput = document.getElementById('edit-request-id');
+    const statusSelect = document.getElementById('status');
+    
+    // Устанавливаем значения в форму
+    requestIdInput.value = id;
+    statusSelect.value = status;
+    
+    // Открываем модальное окно
+    editForm.showModal();
+}
+
+// Закрытие по клику вне диалога
+document.getElementById('edit-form').addEventListener('click', function(e) {
+    if (e.target === this) {
+        this.close();
+    }
+});
+</script>
 </table>
 
 </div>
@@ -380,23 +404,31 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 	</div>
             <a class="close-modal button" onclick="document.getElementById('admin').close()" href="../index.php">Выйти</a>
 		</dialog>
-		<dialog id="edit-form" open>
 
-
-<h1>Редактирование заявки на уборку</h1>
-
-<form method="post" action="./admin/edit_cleaning_request.php">
-    <label for="status">Статус:</label>
-    <select name="status" id="status">
-        <option value="new" <?php echo ($request['status'] == 'new') ? 'selected' : ''; ?>>Новая</option>
-        <option value="in_progress" <?php echo ($request['status'] == 'in_progress') ? 'selected' : ''; ?>>В процессе</option>
-        <option value="completed" <?php echo ($request['status'] == 'completed') ? 'selected' : ''; ?>>Выполнена</option>
-    </select>
-    <br><br>
-    <button type="submit">Сохранить</button>
-</form>
-
-<a href="index.php">Вернуться в админ-панель</a>
-		</dialog>
+		
+		<dialog id="edit-form">
+    <div class="modal-content">
+        <h1 class="form-h1">Редактирование заявки на уборку</h1>
+        <span class="modal-close" onclick="document.getElementById('edit-form').close()">&times;</span>
+        
+        <form method="post" action="./admin/edit_cleaning_request.php">
+            <input type="hidden" name="id" id="edit-request-id">
+            
+            <div class="form-group">
+                <label for="status">Статус:</label>
+                <select name="status" id="status" class="form-control">
+                    <option value="new">Новая</option>
+                    <option value="in_progress">В процессе</option>
+                    <option value="completed">Выполнена</option>
+                </select>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="button header__nav-button">Сохранить</button>
+                <button type="button" class="button header__nav-button" onclick="document.getElementById('edit-form').close()">Отмена</button>
+            </div>
+        </form>
+    </div>
+</dialog>
 	</body>
 </html>
