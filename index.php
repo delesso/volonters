@@ -41,8 +41,6 @@ try {
     die();
 }
 
-$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -411,18 +409,17 @@ document.getElementById('edit-form').addEventListener('click', function(e) {
         <h1 class="form-h1">Редактирование заявки на уборку</h1>
         <span class="modal-close" onclick="document.getElementById('edit-form').close()">&times;</span>
         
-        <form method="post" action="./admin/edit_cleaning_request.php">
+        <form method="post" action="./admin/edit_cleaning_request.php?id=<?= htmlspecialchars($request['id']) ?>">
             <input type="hidden" name="id" id="edit-request-id">
             
             <div class="form-group">
                 <label for="status">Статус:</label>
                 <select name="status" id="status" class="form-control">
-                    <option value="new">Новая</option>
-                    <option value="in_progress">В процессе</option>
-                    <option value="completed">Выполнена</option>
+                <option value="new" <?= ($request['status'] == 'new') ? 'selected' : '' ?>>Новая</option>
+                <option value="in_progress" <?= ($request['status'] == 'in_progress') ? 'selected' : '' ?>>В процессе</option>
+                <option value="completed" <?= ($request['status'] == 'completed') ? 'selected' : '' ?>>Выполнено</option>
                 </select>
             </div>
-            
             <div class="form-actions">
                 <button type="submit" class="button header__nav-button">Сохранить</button>
                 <button type="button" class="button header__nav-button" onclick="document.getElementById('edit-form').close()">Отмена</button>
