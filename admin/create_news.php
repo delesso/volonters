@@ -59,23 +59,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
 
         $_SESSION['message'] = "Новость успешно создана!"; 
-        header("Location: index.php"); 
+        header("Location: ../index.php"); 
         exit();
 
     } catch (PDOException $e) {
         $_SESSION['message'] = "Ошибка базы данных: " . $e->getMessage(); 
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit();
     }
 
     if ($upload_error) {
       $_SESSION['message'] = $upload_error;
-      header("Location: index.php");
+      header("Location: ../index.php");
       exit();
     }
 
 } else {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 

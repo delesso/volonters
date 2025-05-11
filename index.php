@@ -2,8 +2,6 @@
 session_start();
 require_once("./php/db.php");
 
-
-
 try {
     global $conn;
     $sql = "SELECT * FROM news ORDER BY created_at DESC LIMIT 6";
@@ -22,10 +20,6 @@ try {
     echo "Ошибка базы данных: " . $e->getMessage();
     die();
 }
-if (!isset($_SESSION['admin'])) {
-    header("Location: ../index.php");
-    exit();
- }
 try {
     global $conn;
 
@@ -46,6 +40,9 @@ try {
     echo "Ошибка базы данных: " . $e->getMessage();
     die();
 }
+
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -365,7 +362,7 @@ try {
 </table>
 <div class="create-news">
 <h1>Создание новости</h1>
-    <form action="create_news.php" method="post" enctype="multipart/form-data">
+    <form action="./admin/create_news.php" method="post" enctype="multipart/form-data">
         <label for="title">Заголовок:</label><br>
         <input type="text" id="title" name="title" required><br><br>
 
@@ -388,7 +385,7 @@ try {
 
 <h1>Редактирование заявки на уборку</h1>
 
-<form method="post">
+<form method="post" action="./admin/edit_cleaning_request.php">
     <label for="status">Статус:</label>
     <select name="status" id="status">
         <option value="new" <?php echo ($request['status'] == 'new') ? 'selected' : ''; ?>>Новая</option>
